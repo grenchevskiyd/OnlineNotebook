@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Тема - Онлайн записник</title>
+</head>
+
+<body>
+    {% extends 'online_notes/base.html' %}
+    {% block page_header %}
+    <h3>{{ topic }}</h3>
+    {% endblock page_header %}
+    {% block content %}
+    <p>
+        <a href="{% url 'online_notes:new_note' topic.id %}">Додати новий запис</a>
+    </p>
+    {% for note in notes %}
+    <div class="card mb-3">
+        <h4 class="card-header">
+            {{ note.date_added|date:'d M Y H:i' }}
+            <small><a href="{% url 'online_notes:edit_note' note.id %}">
+                    Змінити зміст нотатки</a> </small>
+        </h4>
+        <div class="card-body">
+            {{ note.text|linebreaks }}
+        </div>
+    </div>
+    {% empty %}
+    <p>У цій темі ще немає нотаток.</p>
+    {% endfor %}
+
+    {% endblock content %}
+</body>
+
+</html>

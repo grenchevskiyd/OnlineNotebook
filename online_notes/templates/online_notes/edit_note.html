@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Зміна запису - Онлайн записник</title>
+</head>
+
+<body>
+    {% extends "online_notes/base.html" %}
+
+    {% block content %}
+    <p><a href="{% url 'online_notes:topic' topic.id %}">{{topic}}</a></p>
+    <p>Змініть запис:</p>
+
+    <form action="{% url 'online_notes:edit_note' note.id %}" method='post'>
+        {% csrf_token %}
+        {{form.as_p}}
+        <button name="save" class=" btn btn-lg btn-primary">Зберегти зміни</button>
+    </form>
+    {% endblock content %}
+</body>
+
+</html>

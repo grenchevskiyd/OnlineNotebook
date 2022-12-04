@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Нова тема - Онлайн записник</title>
+</head>
+
+<body>
+    {% extends "online_notes/base.html" %}
+
+    {% block content %}
+    <p>Назва нової теми:</p>
+
+    <form action="{% url 'online_notes:new_topic' %}" method='post'>
+        {% csrf_token %}
+        {{form.as_p}}
+        <button name="submit">Створити тему</button>
+    </form>
+    {% endblock content %}
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Головна - Онлайн записник</title>
+</head>
+
+<body>
+    <p>
+        {% extends "online_notes/base.html" %}
+
+        {% block page_header %}
+    <div class="jumpbotron">
+        <h1 class="display-3">Це - ваш персональний онлайн-записник</h1>
+        <p class="lead">Простий та мінімалістичний онлайн-записник, який зберігає всі ваші думки та доступний на
+            будь-якому вашому пристрої</p>
+        {% if user.is_authenticated %}
+        <p class="lead">Привіт, {{user.username}}!</p>
+        {% else %}
+        <a class=" btn btn-lg btn-primary" href="{% url 'users:register' %}" role="button">Зареєструватися &raquo;</a>
+        <a class=" btn btn-lg btn-warning" href="{% url 'users:login' %}" role="button">Увійти &rsaquo;</a>
+        {% endif %}
+    </div>
+    {% endblock page_header %}
+
+</body>
+
+</html>

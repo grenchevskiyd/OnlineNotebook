@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Теми - Онлайн записник</title>
+</head>
+
+<body>
+    {% extends "online_notes/base.html" %}
+
+    {% block page_header %}
+    <h1>Теми</h1>
+    <p>Теми дозволяють групувати нотатки на ваш розсуд</p>
+    {% endblock page_header %}
+
+    {% block content %}
+
+    <ul>
+        {% for topic in topics %}
+        <li>
+            <h3>
+                <a href="{% url 'online_notes:topic' topic.id %}">{{topic}}</a>
+            </h3>
+        </li>
+        {% empty %}
+        <li>
+            <h3>Ви ще не створили жодної теми.</h3>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h3></h3><a href="{% url 'online_notes:new_topic' %}">Створити нову тему</a></h3>
+    {% endblock content %}
+</body>
+
+</html>
